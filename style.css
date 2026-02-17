@@ -221,7 +221,7 @@ body {
 }
 
 .hero-title {
-  font-size: 52px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--color-navy);
   line-height: 1.4;
@@ -230,7 +230,7 @@ body {
 
 .hero-name {
   display: block;
-  font-size: 72px;
+  font-size: 64px;
   margin-top: 8px;
 }
 
@@ -1152,7 +1152,7 @@ body {
   }
 
   .hero-title {
-    font-size: 36px;
+    font-size: 16px;
   }
 
   .hero-name {
@@ -1335,7 +1335,7 @@ body {
   }
 
   .hero-title {
-    font-size: 28px;
+    font-size: 14px;
     margin-bottom: 16px;
   }
 
@@ -1745,73 +1745,87 @@ body {
   }
 
   .section-title {
-    font-size: 18px;
-    margin-bottom: 12px;
-    padding-bottom: 4px;
+    font-size: 45px;
+    margin-bottom: 16px;
+    padding-bottom: 6px;
   }
 
   /* ===== ページ1: ヒーロー + お知らせ ===== */
   .hero {
     min-height: auto;
-    padding: 30px 40px;
+    padding: 20px 40px;
+    width: 100%;
   }
 
   .hero-content {
-    gap: 40px;
+    max-width: 100%;
+    gap: 60px;
+    justify-content: center;
   }
 
   .hero-text {
-    max-width: 550px;
+    max-width: none;
+    flex: 1;
   }
 
   .hero-title {
-    font-size: 42px;
+    font-size: 18px;
     margin-bottom: 20px;
+    white-space: nowrap;
   }
 
   .hero-name {
     font-size: 56px;
+    white-space: nowrap;
   }
 
   .hero-name-reading {
-    font-size: 14px;
+    font-size: 16px;
     letter-spacing: 0.25em;
     margin-top: 4px;
+    white-space: nowrap;
   }
 
   .hero-subtitle {
-    font-size: 22px;
+    font-size: 26px;
+    white-space: nowrap;
+  }
+
+  .credential-label,
+  .credential-value {
+    white-space: nowrap;
   }
 
   .hero-image img {
-    height: 480px;
+    height: 520px;
     width: auto;
   }
 
   .credentials-inline {
-    gap: 30px;
-    margin-top: 28px;
+    gap: 50px;
+    margin-top: 32px;
   }
 
   .wreath {
-    width: 26px;
-    height: 56px;
+    width: 30px;
+    height: 64px;
   }
 
   .credential-label {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .credential-value {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .news {
-    padding: 10px 16px;
+    padding: 12px 20px;
+    width: 100%;
   }
 
   .news-title {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .news-ticker-wrapper {
@@ -1837,40 +1851,51 @@ body {
 
   /* ===== ページ2: 基本仕様 ===== */
   .spec {
+    width: 100%;
+  }
+
+  .spec .section-container {
+    max-width: 100%;
   }
 
   .spec-content {
-    gap: 24px;
+    gap: 40px;
+    width: 100%;
   }
 
   .spec-photo {
-    flex: 0 0 140px;
+    flex: 0 0 180px;
+  }
+
+  .spec-photo img {
+    width: 180px;
   }
 
   .spec-info {
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 24px 40px;
+    flex: 1;
   }
 
   .spec-subtitle {
-    font-size: 12px;
-    margin-bottom: 8px;
+    font-size: 14px;
+    margin-bottom: 10px;
   }
 
   .spec-table th,
   .spec-table td {
-    padding: 4px 8px;
-    font-size: 10px;
+    padding: 6px 10px;
+    font-size: 11px;
   }
 
   .spec-table th {
-    width: 80px;
+    width: 85px;
   }
 
   .spec-list li {
-    padding: 3px 0;
-    padding-left: 12px;
-    font-size: 10px;
+    padding: 4px 0;
+    padding-left: 14px;
+    font-size: 11px;
   }
 
   /* ===== ページ3: 搭載機能 + エンジン ===== */
