@@ -4,9 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>岩根大純 | パッションモンスター</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,8 +21,20 @@
         <li><a href="#updates">主要なアップデート</a></li>
         <li><a href="#next-good">岩根大純のNext Good</a></li>
       </ul>
-      <button class="nav-pdf-btn" onclick="window.print()">PDFでダウンロード</button>
+      <button class="nav-pdf-btn" onclick="window.print()">PDFでダウンロード<svg class="download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></button>
+      <button class="hamburger" onclick="toggleMenu()" aria-label="メニュー">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#spec" onclick="closeMenu()">基本仕様</a>
+      <a href="#features" onclick="closeMenu()">搭載機能</a>
+      <a href="#reviews" onclick="closeMenu()">評価とレビュー</a>
+      <a href="#updates" onclick="closeMenu()">主要なアップデート</a>
+      <a href="#next-good" onclick="closeMenu()">岩根大純のNext Good</a>
+    </div>
   </header>
 
   <!-- ヒーローセクション -->
@@ -75,7 +84,7 @@
               </svg>
               <div class="credential-content">
                 <span class="credential-label">京都工芸繊維大学</span>
-                <span class="credential-value">デザイン建築学課程</span>
+                <span class="credential-value">デザイン×建築×AI</span>
               </div>
               <svg class="wreath wreath-right" viewBox="0 0 30 70" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 5 Q25 35 5 65" stroke="#D4A84B" stroke-width="1.5" fill="none"/>
@@ -105,12 +114,30 @@
   <section class="news">
     <div class="news-container">
       <h2 class="news-title">お知らせ</h2>
-      <ul class="news-list">
-        <li><span class="news-date">2026.02.15</span>AIツールやCADの勉強会を開催しました</li>
-        <li><span class="news-date">2026.02.12</span>宅建・一級建築士の勉強が始まりました</li>
-        <li><span class="news-date">2026.02.10</span>テクノロジーを活用した重要建築の保存の研究が始まりました</li>
-        <li><span class="news-date">2026.01.02</span>AIの課金額が月一万円を突破しました</li>
-      </ul>
+      <div class="news-ticker-wrapper">
+        <ul class="news-ticker news-ticker-row1">
+          <li><span class="news-date">2025.11.22</span>株式会社コスモスイニシアに出会いました</li>
+          <li><span class="news-date">2025.12.09-10</span>株式会社コスモスイニシアのインターンに参加しました</li>
+          <li><span class="news-date">2026.01.02</span>AIの課金額が月一万円を突破しました</li>
+          <li><span class="news-date">2026.01.14</span>松ヶ崎祭実行委員会を引退しました</li>
+          <!-- ループ用に複製 -->
+          <li><span class="news-date">2025.11.22</span>株式会社コスモスイニシアに出会いました</li>
+          <li><span class="news-date">2025.12.09-10</span>株式会社コスモスイニシアのインターンに参加しました</li>
+          <li><span class="news-date">2026.01.02</span>AIの課金額が月一万円を突破しました</li>
+          <li><span class="news-date">2026.01.14</span>松ヶ崎祭実行委員会を引退しました</li>
+        </ul>
+        <ul class="news-ticker news-ticker-row2">
+          <li><span class="news-date">2026.01.19</span>先輩の卒業制作のお手伝いが終わりました</li>
+          <li><span class="news-date">2026.02.10</span>テクノロジーを活用した重要建築の保存の研究が始まりました</li>
+          <li><span class="news-date">2026.02.12</span>宅建・一級建築士の勉強が始まりました</li>
+          <li><span class="news-date">2026.02.15</span>AIツールやCADの勉強会を開催しました</li>
+          <!-- ループ用に複製 -->
+          <li><span class="news-date">2026.01.19</span>先輩の卒業制作のお手伝いが終わりました</li>
+          <li><span class="news-date">2026.02.10</span>テクノロジーを活用した重要建築の保存の研究が始まりました</li>
+          <li><span class="news-date">2026.02.12</span>宅建・一級建築士の勉強が始まりました</li>
+          <li><span class="news-date">2026.02.15</span>AIツールやCADの勉強会を開催しました</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -120,57 +147,88 @@
       <h2 class="section-title">基本仕様</h2>
       <div class="spec-content">
         <div class="spec-photo">
-          <img src="images/profile.jpg" alt="岩根大純 プロフィール写真">
+          <img src="images/profile.png" alt="岩根大純 プロフィール写真">
         </div>
         <div class="spec-info">
-          <table class="spec-table">
-            <tr>
-              <th>氏名</th>
-              <td>岩根 大純（いわね たいじゅん）</td>
-            </tr>
-            <tr>
-              <th>生年月日</th>
-              <td>2004年7月27日（21歳）</td>
-            </tr>
-            <tr>
-              <th>住所</th>
-              <td>〒525-0026 滋賀県草津市渋川1丁目2番26-506号 ザ・草津タワー</td>
-            </tr>
-            <tr>
-              <th>電話番号</th>
-              <td>070-1423-8403</td>
-            </tr>
-            <tr>
-              <th>メール</th>
-              <td>b3161018@kit.edu.ac.jp</td>
-            </tr>
-          </table>
+          <div class="spec-block">
+            <h3 class="spec-subtitle">基本情報</h3>
+            <table class="spec-table">
+              <tr>
+                <th>氏名</th>
+                <td>岩根 大純（いわね たいじゅん）</td>
+              </tr>
+              <tr>
+                <th>生年月日</th>
+                <td>2004年7月27日（21歳）</td>
+              </tr>
+              <tr>
+                <th>住所</th>
+                <td>〒525-0026 滋賀県草津市渋川1丁目2番26-506号 ザ・草津タワー</td>
+              </tr>
+              <tr>
+                <th>電話番号</th>
+                <td>070-1423-8403</td>
+              </tr>
+              <tr>
+                <th>メール</th>
+                <td>b3161018@kit.edu.ac.jp</td>
+              </tr>
+            </table>
+          </div>
 
-          <h3 class="spec-subtitle">学歴</h3>
-          <table class="spec-table">
-            <tr>
-              <th>2020年4月</th>
-              <td>滋賀県立草津東高等学校 入学</td>
-            </tr>
-            <tr>
-              <th>2023年3月</th>
-              <td>滋賀県立草津東高等学校 卒業</td>
-            </tr>
-            <tr>
-              <th>2023年4月</th>
-              <td>京都工芸繊維大学 デザイン・建築学課程 入学</td>
-            </tr>
-            <tr>
-              <th>2027年3月</th>
-              <td>京都工芸繊維大学 デザイン・建築学課程 卒業予定</td>
-            </tr>
-          </table>
+          <div class="spec-block">
+            <h3 class="spec-subtitle">学歴</h3>
+            <table class="spec-table">
+              <tr>
+                <th>2020年4月</th>
+                <td>滋賀県立草津東高等学校 入学</td>
+              </tr>
+              <tr>
+                <th>2023年3月</th>
+                <td>滋賀県立草津東高等学校 卒業</td>
+              </tr>
+              <tr>
+                <th>2023年4月</th>
+                <td>京都工芸繊維大学 デザイン・建築学課程 入学</td>
+              </tr>
+              <tr>
+                <th>2027年3月</th>
+                <td>京都工芸繊維大学 デザイン・建築学課程 卒業予定</td>
+              </tr>
+            </table>
+          </div>
 
-          <h3 class="spec-subtitle">資格・スコア</h3>
-          <ul class="spec-list">
-            <li>TOEIC 770点（2026年1月取得）</li>
-            <li>普通自動車第一種免許（2024年9月取得）</li>
-          </ul>
+          <div class="spec-block">
+            <h3 class="spec-subtitle">資格・スコア</h3>
+            <table class="spec-table">
+              <tr>
+                <th>2024年9月</th>
+                <td>普通自動車第一種免許 取得</td>
+              </tr>
+              <tr>
+                <th>2026年1月</th>
+                <td>TOEIC 770点 取得</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="spec-block">
+            <h3 class="spec-subtitle">対応スキル</h3>
+            <table class="spec-table">
+              <tr>
+                <th>CAD</th>
+                <td>Archicad</td>
+              </tr>
+              <tr>
+                <th>デザイン</th>
+                <td>Illustrator / Photoshop</td>
+              </tr>
+              <tr>
+                <th>プログラミング</th>
+                <td>Excel VBA / Python（生成AI活用）</td>
+              </tr>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -551,7 +609,7 @@
   <!-- フッター -->
   <footer class="footer">
     <div class="footer-content">
-      <button class="pdf-btn" onclick="window.print()">PDFでダウンロード</button>
+      <button class="pdf-btn" onclick="window.print()">PDFでダウンロード<svg class="download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></button>
       <p class="footer-copy">&copy; 2025 岩根大純</p>
     </div>
   </footer>
@@ -567,6 +625,20 @@
         element.classList.add('show');
         btn.textContent = '閉じる';
       }
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const hamburger = document.querySelector('.hamburger');
+      menu.classList.toggle('open');
+      hamburger.classList.toggle('open');
+    }
+
+    function closeMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const hamburger = document.querySelector('.hamburger');
+      menu.classList.remove('open');
+      hamburger.classList.remove('open');
     }
   </script>
 </body>
