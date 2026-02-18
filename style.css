@@ -548,29 +548,15 @@ body {
   background-color: var(--color-light-gray);
 }
 
-.features-grid {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 30px;
-}
-
-.engine-intro {
-  font-size: 12px;
-  color: var(--color-gray);
-  margin-bottom: 14px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--color-border);
-}
-
 .feature-cards {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
 
 .feature-card {
   background-color: var(--color-white);
-  padding: 14px;
+  padding: 18px;
   border-radius: 6px;
   border: 1px solid var(--color-border);
   position: relative;
@@ -579,13 +565,13 @@ body {
 .feature-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 8px;
+  gap: 14px;
+  margin-bottom: 12px;
 }
 
 .feature-icon {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   background-color: var(--color-pink);
   border-radius: 50%;
   display: flex;
@@ -595,8 +581,8 @@ body {
 }
 
 .feature-icon svg {
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   color: var(--color-white);
 }
 
@@ -613,10 +599,10 @@ body {
 }
 
 .feature-name {
-  font-size: 20px;
+  font-size: 27px;
   font-weight: 700;
   color: var(--color-navy);
-  margin-bottom: 0;
+  margin-bottom: 4px;
 }
 
 .feature-desc {
@@ -631,44 +617,74 @@ body {
   line-height: 1.5;
 }
 
+/* 接続ライン */
+.power-connection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.power-line {
+  width: 3px;
+  height: 40px;
+  background: linear-gradient(to top, var(--color-navy), var(--color-pink));
+}
+
+.power-arrow {
+  color: var(--color-navy);
+  font-size: 20px;
+  line-height: 1;
+  margin-top: -5px;
+}
+
 /* エンジン */
 .engine {
   background-color: var(--color-white);
-  padding: 20px;
+  padding: 24px 30px;
   border-radius: 6px;
-  border: 2px solid var(--color-navy);
-  align-self: center;
-  margin-top: 50px;
+  border: 3px solid var(--color-navy);
+  max-width: 800px;
+  margin: 40px auto 0;
 }
 
-.engine .section-title {
+.engine-title {
+  font-size: 22px;
+  font-weight: 700;
   color: var(--color-navy);
-  border-bottom-color: var(--color-pink);
-  font-size: 20px;
-  margin-bottom: 14px;
+  text-align: center;
+  margin-bottom: 8px;
 }
 
-.engine-item {
-  margin-bottom: 14px;
-  padding-bottom: 14px;
+.engine-intro {
+  font-size: 12px;
+  color: var(--color-gray);
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
   border-bottom: 1px solid var(--color-border);
 }
 
-.engine-item:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-  padding-bottom: 0;
+.engine-items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.engine-item {
+  text-align: center;
+  padding: 0 10px;
 }
 
 .engine-name {
-  font-size: 18px;
+  font-size: 36px;
   font-weight: 700;
   color: var(--color-pink);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .engine-desc {
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.6;
   color: var(--color-gray);
 }
@@ -807,26 +823,29 @@ body {
 }
 
 .timeline {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(5, auto);
-  grid-auto-flow: column;
-  gap: 14px 40px;
+  display: flex;
+  gap: 40px;
 }
 
-.timeline-item:nth-child(n+5) {
-  grid-column: 2;
+.timeline-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.timeline-item:nth-child(5) { grid-row: 1; }
-.timeline-item:nth-child(6) { grid-row: 2; }
-.timeline-item:nth-child(7) { grid-row: 3; }
-.timeline-item:nth-child(8) { grid-row: 4; }
-.timeline-item:nth-child(9) { grid-row: 5; }
+.timeline-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.timeline-group:last-child {
+  margin-bottom: 0;
+}
 
 .timeline-item {
   position: relative;
-  align-self: start;
 }
 
 .timeline-tag {
@@ -870,17 +889,19 @@ body {
 .timeline-major .timeline-content {
   border: 2px solid var(--color-pink);
   background-color: #FFF5F8;
+  padding: 14px 18px;
 }
 
 .major-badge {
   display: inline-block;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   color: var(--color-white);
-  background-color: var(--color-pink);
-  padding: 2px 10px;
-  border-radius: 10px;
-  margin-bottom: 6px;
+  background: linear-gradient(135deg, var(--color-pink), var(--color-navy));
+  padding: 4px 14px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
 
 /* ===================================
@@ -957,6 +978,78 @@ body {
 
 .step-text:last-child {
   margin-bottom: 0;
+}
+
+/* スキルプログレス表示 */
+.skills-progress {
+  padding: 20px 24px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.skill-progress-item {
+  background-color: var(--color-white);
+  padding: 16px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.skill-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+
+.skill-levels {
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.skill-levels .current {
+  color: var(--color-pink);
+}
+
+.skill-levels .arrow {
+  color: var(--color-gray);
+}
+
+.skill-levels .target {
+  color: var(--color-navy);
+  font-weight: 700;
+}
+
+.progress-bar {
+  position: relative;
+  height: 8px;
+  background-color: var(--color-light-gray);
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.progress-current {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-pink), #e85a8f);
+  border-radius: 4px;
+}
+
+.skill-note {
+  font-size: 11px;
+  color: var(--color-gray);
+  line-height: 1.5;
 }
 
 /* 求める環境カード */
@@ -1260,13 +1353,12 @@ body {
   }
 
   /* 搭載機能 */
-  .features-grid {
-    grid-template-columns: 1fr 250px;
-    gap: 20px;
+  .feature-cards {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .feature-name {
-    font-size: 16px;
+    font-size: 24px;
   }
 
   .feature-desc {
@@ -1278,19 +1370,24 @@ body {
   }
 
   .engine {
-    padding: 16px;
+    padding: 20px;
   }
 
-  .engine .section-title {
-    font-size: 16px;
+  .engine-title {
+    font-size: 18px;
+  }
+
+  .engine-items {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
   }
 
   .engine-name {
-    font-size: 14px;
+    font-size: 28px;
   }
 
   .engine-desc {
-    font-size: 11px;
+    font-size: 10px;
   }
 
   /* 評価とレビュー */
@@ -1304,7 +1401,11 @@ body {
 
   /* タイムライン */
   .timeline {
-    gap: 12px 24px;
+    gap: 24px 24px;
+  }
+
+  .timeline-group {
+    gap: 8px;
   }
 
   .timeline-title {
@@ -1316,6 +1417,22 @@ body {
   }
 
   /* Next Good */
+  .skills-grid {
+    gap: 16px;
+  }
+
+  .skill-name {
+    font-size: 13px;
+  }
+
+  .skill-levels {
+    font-size: 11px;
+  }
+
+  .skill-note {
+    font-size: 10px;
+  }
+
   .requirement-cards {
     gap: 12px;
   }
@@ -1521,11 +1638,6 @@ body {
   }
 
   /* 搭載機能 + エンジン */
-  .features-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
   .feature-cards {
     grid-template-columns: 1fr;
     gap: 12px;
@@ -1536,7 +1648,7 @@ body {
   }
 
   .feature-name {
-    font-size: 18px;
+    font-size: 27px;
   }
 
   .feature-desc {
@@ -1547,16 +1659,41 @@ body {
     font-size: 12px;
   }
 
-  .engine {
-    margin-top: 0;
+  .power-connection {
+    padding: 16px 0;
   }
 
-  .engine .section-title {
+  .power-line {
+    height: 30px;
+  }
+
+  .engine {
+    padding: 16px;
+  }
+
+  .engine-title {
     font-size: 18px;
   }
 
+  .engine-items {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .engine-item {
+    text-align: left;
+    padding: 0;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .engine-item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
   .engine-name {
-    font-size: 16px;
+    font-size: 32px;
   }
 
   .engine-desc {
@@ -1600,21 +1737,11 @@ body {
   /* 主要なアップデート */
   .timeline {
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-auto-flow: row;
-    gap: 12px;
+    gap: 24px;
   }
 
-  .timeline-item:nth-child(n+5) {
-    grid-column: 1;
-  }
-
-  .timeline-item:nth-child(5),
-  .timeline-item:nth-child(6),
-  .timeline-item:nth-child(7),
-  .timeline-item:nth-child(8),
-  .timeline-item:nth-child(9) {
-    grid-row: auto;
+  .timeline-group {
+    gap: 8px;
   }
 
   .timeline-tag {
@@ -1674,6 +1801,31 @@ body {
 
   .step-text {
     font-size: 12px;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .skill-progress-item {
+    padding: 14px;
+  }
+
+  .skill-name {
+    font-size: 14px;
+  }
+
+  .skill-levels {
+    font-size: 12px;
+  }
+
+  .progress-bar {
+    height: 6px;
+  }
+
+  .skill-note {
+    font-size: 11px;
   }
 
   .requirement-cards {
@@ -1980,12 +2132,8 @@ body {
   .features {
   }
 
-  .features-grid {
-    grid-template-columns: 1fr 240px;
-    gap: 16px;
-  }
-
   .feature-cards {
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
   }
 
@@ -2016,38 +2164,61 @@ body {
   }
 
   .feature-name {
-    font-size: 12px;
+    font-size: 17px;
     margin-bottom: 4px;
   }
 
   .feature-desc {
-    font-size: 10px;
+    font-size: 9px;
     margin-bottom: 4px;
   }
 
   .feature-note {
-    font-size: 9px;
+    font-size: 8px;
     line-height: 1.4;
   }
 
-  .engine {
-    padding: 12px;
-    border-width: 1px;
+  .power-connection {
+    padding: 10px 0;
   }
 
-  .engine .section-title {
+  .power-line {
+    height: 20px;
+  }
+
+  .power-arrow {
     font-size: 14px;
+  }
+
+  .engine {
+    padding: 12px 20px;
+    border-width: 2px;
+    max-width: 600px;
+  }
+
+  .engine-title {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .engine-intro {
+    font-size: 9px;
     margin-bottom: 10px;
+    padding-bottom: 8px;
+  }
+
+  .engine-items {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
   }
 
   .engine-item {
-    margin-bottom: 10px;
-    padding-bottom: 10px;
+    padding: 0 8px;
   }
 
   .engine-name {
-    font-size: 11px;
-    margin-bottom: 2px;
+    font-size: 20px;
+    margin-bottom: 4px;
   }
 
   .engine-desc {
@@ -2131,18 +2302,15 @@ body {
 
   .timeline {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, auto);
-    grid-auto-flow: column;
-    gap: 10px 20px;
+    gap: 16px 20px;
   }
 
-  .timeline-item:nth-child(5) {
-    grid-column: 2;
-    grid-row: 1;
+  .timeline-group {
+    gap: 6px;
   }
 
   .timeline-item {
-    padding-left: 16px;
+    padding-left: 0;
   }
 
   .timeline-marker {
@@ -2182,6 +2350,32 @@ body {
 
   .next-good-content {
     gap: 16px;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .skill-progress-item {
+    padding: 10px;
+  }
+
+  .skill-name {
+    font-size: 10px;
+  }
+
+  .skill-levels {
+    font-size: 9px;
+  }
+
+  .progress-bar {
+    height: 6px;
+    margin-bottom: 6px;
+  }
+
+  .skill-note {
+    font-size: 8px;
   }
 
   .requirements-title,
