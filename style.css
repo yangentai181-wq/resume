@@ -18,8 +18,12 @@
   box-sizing: border-box;
 }
 
-html, body {
-  overflow-x: hidden;
+html {
+  overflow-x: clip;
+}
+
+body {
+  overflow-x: clip;
 }
 
 body {
@@ -388,14 +392,15 @@ body {
 
 .news-ticker-wrapper {
   flex: 1;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 6px 20px;
+  overflow: hidden;
+  position: relative;
 }
 
 .news-ticker {
-  display: contents;
+  display: flex;
   list-style: none;
+  animation: ticker 30s linear infinite;
+  width: max-content;
 }
 
 .news-ticker li {
@@ -403,6 +408,7 @@ body {
   color: var(--color-gray);
   position: relative;
   padding-left: 10px;
+  padding-right: 40px;
   white-space: nowrap;
 }
 
@@ -413,13 +419,14 @@ body {
   color: var(--color-pink);
 }
 
-/* ループ用の複製を非表示（5件以上表示） */
-.news-ticker-row1 li:nth-child(n+6) {
-  display: none;
-}
 
-.news-ticker-row2 li:nth-child(n+4) {
-  display: none;
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .news-date {
@@ -1277,11 +1284,6 @@ body {
   }
 
   /* お知らせ */
-  .news-ticker-wrapper {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 6px 16px;
-  }
-
   .news-ticker li {
     font-size: 10px;
   }
@@ -1582,13 +1584,11 @@ body {
   }
 
   .news-ticker-wrapper {
-    grid-template-columns: 1fr;
-    gap: 6px;
+    width: 100%;
   }
 
   .news-ticker li {
     font-size: 10px;
-    white-space: normal;
   }
 
   /* セクション共通 */
