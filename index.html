@@ -21,7 +21,7 @@
         <li><a href="#updates">主要なアップデート</a></li>
         <li><a href="#next-good">岩根大純のNext Good</a></li>
       </ul>
-      <button class="nav-pdf-btn" onclick="window.print()">PDFでダウンロード<svg class="download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></button>
+      <button class="nav-pdf-btn" onclick="window.print()">PDFをダウンロード<svg class="download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></button>
       <button class="hamburger" onclick="toggleMenu()" aria-label="メニュー">
         <span></span>
         <span></span>
@@ -41,8 +41,8 @@
   <section class="hero">
     <div class="hero-content">
       <div class="hero-text">
-        <h1 class="hero-title">パッションモンスター<br><span class="hero-name">岩根 大純</span><span class="hero-name-reading">Iwane Taijun</span></h1>
-        <p class="hero-subtitle">理不尽を、情熱と仕組みでハックする。</p>
+        <h1 class="hero-title">パッションモンスター<br><span class="hero-name-wrapper"><span class="hero-name">岩根 大純</span><span class="hero-name-reading">Iwane Taijun</span></span></h1>
+        <p class="hero-subtitle">理不尽を、<br>情熱と仕組みでハックする。</p>
         <!-- 実績バー -->
         <div class="credentials-inline">
           <div class="credential-item">
@@ -99,8 +99,8 @@
           </div>
         </div>
       </div>
-      <div class="hero-image">
-        <img src="images/hero.png" alt="岩根大純">
+      <div class="hero-images">
+        <img src="images/hero.png" alt="岩根大純" class="hero-img-main">
       </div>
     </div>
     <!-- 印刷時のみ表示されるQRコード -->
@@ -609,7 +609,7 @@
   <!-- フッター -->
   <footer class="footer">
     <div class="footer-content">
-      <button class="pdf-btn" onclick="window.print()">PDFでダウンロード<svg class="download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></button>
+      <button class="pdf-btn" onclick="window.print()">PDFをダウンロード<svg class="download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></button>
       <p class="footer-copy">&copy; 2025 岩根大純</p>
     </div>
   </footer>
