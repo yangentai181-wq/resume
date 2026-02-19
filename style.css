@@ -276,7 +276,7 @@ body {
 }
 
 .hero-img-main {
-  height: 715px;
+  height: 787px;
   width: auto;
   display: block;
   position: relative;
@@ -860,6 +860,42 @@ body {
 
 .timeline-item {
   position: relative;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.timeline-item > .timeline-tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.timeline-content {
+  flex: 1;
+  padding-top: 32px;
+  background-color: var(--color-white);
+  padding: 32px 14px 10px 14px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+}
+
+.timeline-image {
+  flex: 0 0 120px;
+  height: 100px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 32px;
+}
+
+.timeline-image.placeholder {
+  background-color: #d0d0d0;
+}
+
+.timeline-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .timeline-tag {
@@ -875,13 +911,6 @@ body {
 
 .timeline-tag-current {
   background-color: var(--color-navy);
-}
-
-.timeline-content {
-  background-color: var(--color-white);
-  padding: 10px 14px;
-  border-radius: 4px;
-  border: 1px solid var(--color-border);
 }
 
 .timeline-title {
@@ -1235,7 +1264,7 @@ body {
   }
 
   .hero-img-main {
-    height: 550px;
+    height: 605px;
   }
 
   .hero-img-sub {
@@ -1326,7 +1355,7 @@ body {
   }
 
   .hero-img-main {
-    height: 400px;
+    height: 440px;
   }
 
   .hero-img-sub {
@@ -1415,6 +1444,11 @@ body {
 
   .timeline-group {
     gap: 8px;
+  }
+
+  .timeline-image {
+    flex: 0 0 100px;
+    height: 80px;
   }
 
   .timeline-title {
@@ -1544,7 +1578,7 @@ body {
   }
 
   .hero-img-main {
-    height: 280px;
+    height: 308px;
   }
 
   .hero-img-sub {
@@ -1756,8 +1790,24 @@ body {
     padding: 3px 10px;
   }
 
+  .timeline-item {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .timeline-item > .timeline-tag {
+    position: static;
+  }
+
   .timeline-content {
     padding: 12px;
+  }
+
+  .timeline-image {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 150px;
+    margin-top: 0;
   }
 
   .timeline-title {
@@ -2028,7 +2078,7 @@ body {
   }
 
   .hero-img-main {
-    height: 520px;
+    height: 572px;
     width: auto;
   }
 
@@ -2348,6 +2398,16 @@ body {
   .timeline-desc {
     font-size: 8px;
     line-height: 1.4;
+  }
+
+  .timeline-image {
+    flex: 0 0 80px;
+    height: 60px;
+    margin-top: 24px;
+  }
+
+  .timeline-image.placeholder {
+    background-color: #e0e0e0;
   }
 
   /* ===== ページ6: Next Good ===== */
