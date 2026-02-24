@@ -1062,6 +1062,10 @@ body {
   flex: 1;
 }
 
+.timeline-no-image {
+  margin-bottom: 100px;
+}
+
 .timeline-major .timeline-content {
   padding-top: 40px;
 }
