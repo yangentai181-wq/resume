@@ -2361,8 +2361,8 @@ body {
 
   /* 主要なアップデート */
   .timeline {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    flex-direction: column;
+    gap: 0;
   }
 
   .timeline-group {
@@ -2494,6 +2494,94 @@ body {
   .pdf-btn {
     padding: 8px 24px;
     font-size: 12px;
+  }
+
+  /* ヒーロー：サブ画像は非表示 */
+  .hero-img-sub {
+    display: none;
+  }
+
+  /* AIチャットボット */
+  .chatbot-header {
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .chatbot-title {
+    font-size: 18px;
+  }
+
+  .chatbot-subtitle {
+    font-size: 11px;
+  }
+
+  .chatbot-wrapper {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .chatbot-suggest-panel {
+    flex: none;
+    width: 100%;
+    padding: 12px 12px 10px;
+  }
+
+  .suggest-label {
+    margin-bottom: 8px;
+  }
+
+  .suggest-chips {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 6px;
+    padding-bottom: 4px;
+  }
+
+  .suggest-chip {
+    font-size: 11px;
+    padding: 7px 10px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .chatbot-container {
+    width: 100%;
+  }
+
+  .chat-history {
+    height: 320px;
+    padding: 14px;
+  }
+
+  .chat-bubble {
+    font-size: 13px;
+    padding: 10px 13px;
+    max-width: 88%;
+  }
+
+  .chat-input {
+    font-size: 14px;
+  }
+
+  /* フローティングタブ：モバイルでは非表示 */
+  .float-tab {
+    display: none;
+  }
+
+  /* フローティングパネル：フルスクリーン表示 */
+  .float-panel {
+    width: 100vw;
+    right: -100vw;
+    top: 0;
+    transform: none;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
+  .float-panel.open {
+    right: 0;
   }
 }
 
