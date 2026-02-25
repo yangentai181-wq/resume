@@ -1549,6 +1549,17 @@ body {
 /* ===================================
    フローティングチャット
    =================================== */
+.float-drag-handle {
+  display: none;
+  width: 40px;
+  height: 5px;
+  background-color: var(--color-border);
+  border-radius: 3px;
+  margin: 10px auto 4px;
+  flex-shrink: 0;
+  touch-action: none;
+  cursor: grab;
+}
 .float-tab {
   position: fixed;
   right: 0;
@@ -2273,7 +2284,7 @@ body {
   }
 
   .feature-name {
-    font-size: 27px;
+    font-size: 21px;
   }
 
   .feature-desc {
@@ -2565,19 +2576,35 @@ body {
     font-size: 14px;
   }
 
-  /* フローティングタブ：モバイルでは非表示 */
+  /* フローティングタブ：モバイルでは小さく表示 */
   .float-tab {
-    display: none;
+    display: flex;
+    padding: 10px 7px;
   }
 
-  /* フローティングパネル：フルスクリーン表示 */
+  .float-tab-icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .float-tab span {
+    font-size: 10px;
+  }
+
+  /* ドラッグハンドル表示 */
+  .float-drag-handle {
+    display: block;
+  }
+
+  /* フローティングパネル：上下ドラッグ可能なボトムシート */
   .float-panel {
     width: 100vw;
+    height: 75vh;
+    max-height: 75vh;
+    top: 25vh;
     right: -100vw;
-    top: 0;
     transform: none;
-    max-height: 100vh;
-    border-radius: 0;
+    border-radius: 20px 20px 0 0;
   }
 
   .float-panel.open {

@@ -837,6 +837,7 @@
   </div>
 
   <div class="float-panel" id="floatPanel">
+    <div class="float-drag-handle" id="floatDragHandle"></div>
     <div class="float-panel-header">
       <div class="float-panel-title">
         <img src="images/hero.webp" alt="大純AI" class="float-avatar">
@@ -1068,9 +1069,53 @@ ${JIBUN_DB}`;
     const floatHistory = [];
 
     function toggleFloatChat() {
-      document.getElementById('floatPanel').classList.toggle('open');
-      document.getElementById('floatTab').classList.toggle('hidden');
+      const panel = document.getElementById('floatPanel');
+      const tab = document.getElementById('floatTab');
+      if (panel.classList.contains('open')) {
+        panel.classList.remove('open');
+        tab.classList.remove('hidden');
+      } else {
+        panel.style.top = '';
+        panel.classList.add('open');
+        tab.classList.add('hidden');
+      }
     }
+
+    // モバイル：パネルの上下ドラッグ
+    (function() {
+      const panel = document.getElementById('floatPanel');
+      const handle = document.getElementById('floatDragHandle');
+      let startY = 0, startTop = 0, dragging = false;
+
+      handle.addEventListener('touchstart', function(e) {
+        if (window.innerWidth > 768) return;
+        dragging = true;
+        startY = e.touches[0].clientY;
+        startTop = panel.getBoundingClientRect().top;
+        panel.style.transition = 'none';
+        panel.style.top = startTop + 'px';
+        e.preventDefault();
+      }, { passive: false });
+
+      window.addEventListener('touchmove', function(e) {
+        if (!dragging) return;
+        const delta = e.touches[0].clientY - startY;
+        const newTop = Math.max(0, Math.min(window.innerHeight * 0.8, startTop + delta));
+        panel.style.top = newTop + 'px';
+        e.preventDefault();
+      }, { passive: false });
+
+      window.addEventListener('touchend', function() {
+        if (!dragging) return;
+        dragging = false;
+        panel.style.transition = '';
+        if (parseFloat(panel.style.top) > window.innerHeight * 0.7) {
+          panel.style.top = '';
+          panel.classList.remove('open');
+          document.getElementById('floatTab').classList.remove('hidden');
+        }
+      });
+    })();
 
     function floatAppendMessage(role, text) {
       const history = document.getElementById('floatChatHistory');
