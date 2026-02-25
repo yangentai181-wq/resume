@@ -830,6 +830,14 @@
     </div>
   </section>
 
+  <!-- テキスト選択ツールチップ -->
+  <div class="selection-tooltip" id="selectionTooltip">
+    <button onclick="quoteSelection()">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      大純AIに聞く
+    </button>
+  </div>
+
   <!-- フローティングチャット -->
   <div class="float-tab" id="floatTab" onclick="toggleFloatChat()">
     <img src="images/hero.webp" alt="大純AI" class="float-tab-icon">
@@ -1207,6 +1215,52 @@ ${JIBUN_DB}`;
     });
     document.getElementById('floatChatInput').addEventListener('input', function() {
       this.style.height = 'auto'; this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+    });
+
+    // テキスト選択→引用チャット機能
+    let _quotedText = '';
+
+    function handleTextSelection(e) {
+      if (e.target.closest('.chat-input, #selectionTooltip, .float-panel, .chatbot-section')) return;
+      setTimeout(function() {
+        const sel = window.getSelection();
+        const text = sel ? sel.toString().trim() : '';
+        if (text.length >= 10) {
+          _quotedText = text;
+          const rect = sel.getRangeAt(0).getBoundingClientRect();
+          const tooltip = document.getElementById('selectionTooltip');
+          tooltip.style.left = (rect.left + rect.width / 2) + 'px';
+          tooltip.style.top = (rect.top - 48) + 'px';
+          tooltip.style.display = 'block';
+        } else {
+          hideSelectionTooltip();
+        }
+      }, 10);
+    }
+
+    function hideSelectionTooltip() {
+      document.getElementById('selectionTooltip').style.display = 'none';
+    }
+
+    function quoteSelection() {
+      if (!_quotedText) return;
+      hideSelectionTooltip();
+      window.getSelection().removeAllRanges();
+      const panel = document.getElementById('floatPanel');
+      if (!panel.classList.contains('open')) toggleFloatChat();
+      document.getElementById('floatSuggests').style.display = 'none';
+      const input = document.getElementById('floatChatInput');
+      input.value = '「' + _quotedText + '」について、もっと教えてください。';
+      input.focus();
+      input.style.height = 'auto';
+      input.style.height = Math.min(input.scrollHeight, 100) + 'px';
+      _quotedText = '';
+    }
+
+    document.addEventListener('mouseup', handleTextSelection);
+    document.addEventListener('touchend', handleTextSelection);
+    document.addEventListener('mousedown', function(e) {
+      if (!e.target.closest('#selectionTooltip')) hideSelectionTooltip();
     });
 
     const chatInput = document.getElementById('chatInput');

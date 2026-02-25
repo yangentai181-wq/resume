@@ -1549,6 +1549,47 @@ body {
 /* ===================================
    フローティングチャット
    =================================== */
+/* ===================================
+   テキスト選択ツールチップ
+   =================================== */
+.selection-tooltip {
+  position: fixed;
+  background-color: var(--color-navy);
+  color: var(--color-white);
+  border-radius: 20px;
+  padding: 7px 16px;
+  z-index: 9999;
+  display: none;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  white-space: nowrap;
+  pointer-events: auto;
+}
+
+.selection-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--color-navy);
+}
+
+.selection-tooltip button {
+  background: none;
+  border: none;
+  color: var(--color-white);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .float-drag-handle {
   display: block;
   width: 40px;
