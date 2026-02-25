@@ -851,7 +851,7 @@
         <img src="images/hero.webp" alt="大純AI" class="float-avatar">
         <div>
           <div class="float-panel-name">大純AIに聞く</div>
-          <div class="float-panel-sub">履歴書の補足にどうぞ</div>
+          <div class="float-panel-sub">履歴書に書ききれなかったことをお答えします</div>
         </div>
       </div>
       <button class="float-close-btn" onclick="toggleFloatChat()">✕</button>
@@ -1058,7 +1058,7 @@ ${JIBUN_DB}`;
           return;
         }
         const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || '回答を取得できませんでした。';
-        appendMessage('bot', reply);
+        appendMessage('bot', 'ご質問ありがとうございます。\n' + reply);
         chatHistory.push({ role: 'model', parts: [{ text: reply }] });
       };
 
@@ -1203,7 +1203,7 @@ ${JIBUN_DB}`;
         floatHideTyping();
         if (!res.ok) { floatAppendMessage('bot', 'エラー: ' + (data.error?.message || '')); return; }
         const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || '回答を取得できませんでした。';
-        floatAppendMessage('bot', reply);
+        floatAppendMessage('bot', 'ご質問ありがとうございます。\n' + reply);
         floatHistory.push({ role: 'model', parts: [{ text: reply }] });
       };
       try { await callAPI(2); } catch(e) { floatHideTyping(); floatAppendMessage('bot', '通信エラー'); } finally { floatSetLoading(false); }
