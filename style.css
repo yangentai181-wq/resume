@@ -1550,7 +1550,7 @@ body {
    フローティングチャット
    =================================== */
 .float-drag-handle {
-  display: none;
+  display: block;
   width: 40px;
   height: 5px;
   background-color: var(--color-border);
@@ -1559,6 +1559,10 @@ body {
   flex-shrink: 0;
   touch-action: none;
   cursor: grab;
+}
+
+.float-drag-handle:active {
+  cursor: grabbing;
 }
 .float-tab {
   position: fixed;

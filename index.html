@@ -1076,45 +1076,70 @@ ${JIBUN_DB}`;
         tab.classList.remove('hidden');
       } else {
         panel.style.top = '';
+        panel.style.transform = '';
         panel.classList.add('open');
         tab.classList.add('hidden');
       }
     }
 
-    // モバイル：パネルの上下ドラッグ
+    // パネルの上下ドラッグ（PC・モバイル共通）
     (function() {
       const panel = document.getElementById('floatPanel');
       const handle = document.getElementById('floatDragHandle');
       let startY = 0, startTop = 0, dragging = false;
 
-      handle.addEventListener('touchstart', function(e) {
-        if (window.innerWidth > 768) return;
+      function onDragStart(clientY) {
         dragging = true;
-        startY = e.touches[0].clientY;
+        startY = clientY;
         startTop = panel.getBoundingClientRect().top;
         panel.style.transition = 'none';
         panel.style.top = startTop + 'px';
-        e.preventDefault();
-      }, { passive: false });
+        panel.style.transform = 'none';
+      }
 
-      window.addEventListener('touchmove', function(e) {
+      function onDragMove(clientY) {
         if (!dragging) return;
-        const delta = e.touches[0].clientY - startY;
-        const newTop = Math.max(0, Math.min(window.innerHeight * 0.8, startTop + delta));
+        const delta = clientY - startY;
+        const maxTop = window.innerHeight - 100;
+        const newTop = Math.max(0, Math.min(maxTop, startTop + delta));
         panel.style.top = newTop + 'px';
-        e.preventDefault();
-      }, { passive: false });
+      }
 
-      window.addEventListener('touchend', function() {
+      function onDragEnd() {
         if (!dragging) return;
         dragging = false;
         panel.style.transition = '';
-        if (parseFloat(panel.style.top) > window.innerHeight * 0.7) {
+        // モバイル：下に引きすぎたら閉じる
+        if (window.innerWidth <= 768 && parseFloat(panel.style.top) > window.innerHeight * 0.7) {
           panel.style.top = '';
+          panel.style.transform = '';
           panel.classList.remove('open');
           document.getElementById('floatTab').classList.remove('hidden');
         }
+      }
+
+      // タッチイベント（モバイル）
+      handle.addEventListener('touchstart', function(e) {
+        onDragStart(e.touches[0].clientY);
+        e.preventDefault();
+      }, { passive: false });
+      window.addEventListener('touchmove', function(e) {
+        if (!dragging) return;
+        onDragMove(e.touches[0].clientY);
+        e.preventDefault();
+      }, { passive: false });
+      window.addEventListener('touchend', onDragEnd);
+
+      // マウスイベント（PC）
+      handle.addEventListener('mousedown', function(e) {
+        onDragStart(e.clientY);
+        e.preventDefault();
       });
+      window.addEventListener('mousemove', function(e) {
+        if (!dragging) return;
+        onDragMove(e.clientY);
+      });
+      window.addEventListener('mouseup', onDragEnd);
     })();
 
     function floatAppendMessage(role, text) {
