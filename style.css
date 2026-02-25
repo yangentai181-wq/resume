@@ -2416,6 +2416,10 @@ body {
   }
 
   /* 主要なアップデート */
+  .timeline-no-image {
+    margin-bottom: 0;
+  }
+
   .timeline {
     flex-direction: column;
     gap: 0;

@@ -525,11 +525,11 @@
           </div>
           <div class="engine-item">
             <h4 class="engine-name">承認欲求</h4>
-            <p class="engine-desc">人に喜んでもらうために、相手の気持ちをたくさん考えてきた人生です。</p>
+            <p class="engine-desc">人に喜んでもらいたい。そのために相手の気持ちをたくさん考えてきた人生です。気配り・思いやりの根本には他者に認められたい承認欲求があります。</p>
           </div>
           <div class="engine-item">
             <h4 class="engine-name">情熱</h4>
-            <p class="engine-desc">やると決めたことにやけどしそうな熱量を注ぎ込むことができます。</p>
+            <p class="engine-desc">「本気でやれば知恵が出る。」この言葉を胸に何事にも本気で取り組みます。</p>
           </div>
         </div>
       </div>
@@ -1272,6 +1272,52 @@ ${JIBUN_DB}`;
     chatInput.addEventListener('input', function() {
       this.style.height = 'auto';
       this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+    });
+
+    // キーボード表示時に入力欄を見えるようにスクロール
+    chatInput.addEventListener('focus', function() {
+      if (window.innerWidth <= 768) {
+        setTimeout(function() {
+          chatInput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 350);
+      }
+    });
+
+    // フロートパネル：キーボード表示時にパネルサイズを調整
+    var floatInput = document.getElementById('floatChatInput');
+    var floatPanel = document.getElementById('floatPanel');
+
+    function adjustFloatPanelForKeyboard() {
+      if (window.innerWidth > 768) return;
+      if (!floatPanel.classList.contains('open')) return;
+      var vh = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+      floatPanel.style.height = vh + 'px';
+      floatPanel.style.maxHeight = vh + 'px';
+      floatPanel.style.top = '0px';
+      floatPanel.style.transform = 'none';
+    }
+
+    function resetFloatPanelSize() {
+      if (window.innerWidth > 768) return;
+      floatPanel.style.height = '';
+      floatPanel.style.maxHeight = '';
+      floatPanel.style.top = '';
+    }
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', adjustFloatPanelForKeyboard);
+    }
+
+    floatInput.addEventListener('focus', function() {
+      if (window.innerWidth <= 768) {
+        setTimeout(adjustFloatPanelForKeyboard, 350);
+      }
+    });
+
+    floatInput.addEventListener('blur', function() {
+      if (window.innerWidth <= 768) {
+        setTimeout(resetFloatPanelSize, 100);
+      }
     });
   </script>
 </body>
