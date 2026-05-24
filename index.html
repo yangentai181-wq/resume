@@ -2265,7 +2265,7 @@ ${JIBUN_DB}`;
         ensureDbLoaded().catch(() => {});
         if (window.innerWidth <= 768) {
           setTimeout(function () {
-            chatInput.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            chatInput.scrollIntoView({ behavior: "smooth", block: "center" });
           }, 350);
         }
       });
