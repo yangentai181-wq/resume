@@ -1525,6 +1525,23 @@
               自己分析データ・活動実績・他者評価をもとにAIが回答します
             </p>
           </div>
+          <button
+            class="chat-reset-btn"
+            onclick="resetChat()"
+            title="会話をリセット"
+            style="
+              margin-left: auto;
+              background: none;
+              border: 1px solid var(--color-border);
+              border-radius: 8px;
+              padding: 6px 10px;
+              font-size: 12px;
+              cursor: pointer;
+              color: var(--color-gray);
+            "
+          >
+            リセット
+          </button>
         </div>
 
         <div class="chatbot-wrapper">
@@ -1842,6 +1859,13 @@ ${JIBUN_DB}`;
       }
 
       const chatHistory = [];
+
+      function resetChat() {
+        chatHistory.length = 0;
+        document.getElementById("chatHistory").innerHTML =
+          '<div class="chat-message bot"><div class="chat-avatar"><img src="images/hero.webp" alt="AI" /></div>' +
+          '<div class="chat-bubble">ここまでご覧いただきありがとうございました。岩根の考え方、経験、他者からの評価を集めたデータベースをもとにAIが回答します。</div></div>';
+      }
 
       function renderMarkdown(text) {
         const esc = (s) =>
