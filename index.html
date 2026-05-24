@@ -1765,11 +1765,28 @@
         hamburger.classList.remove("open");
       }
     </script>
-    <script src="db.js"></script>
     <script>
       const GEMINI_API_URL = "https://resume.yangentai181.workers.dev/";
 
-      const SYSTEM_PROMPT = `あなたは岩根大純（いわねたいじゅん）のポートフォリオサイトに搭載されたAIアシスタントです。
+      let JIBUN_DB_LOADED = false;
+      let dbLoadingPromise = null;
+      function ensureDbLoaded() {
+        if (JIBUN_DB_LOADED) return Promise.resolve();
+        if (dbLoadingPromise) return dbLoadingPromise;
+        dbLoadingPromise = new Promise((resolve, reject) => {
+          const s = document.createElement("script");
+          s.src = "db.js";
+          s.onload = () => {
+            JIBUN_DB_LOADED = true;
+            resolve();
+          };
+          s.onerror = () => reject(new Error("db.js の読み込みに失敗しました"));
+          document.head.appendChild(s);
+        });
+        return dbLoadingPromise;
+      }
+      function buildSystemPrompt() {
+        return `あなたは岩根大純（いわねたいじゅん）のポートフォリオサイトに搭載されたAIアシスタントです。
 採用担当者や面接官からの質問に、以下の自己分析データを元に回答してください。
 
 【回答ルール】
@@ -1781,6 +1798,7 @@
 
 【岩根大純のデータベース】
 ${JIBUN_DB}`;
+      }
 
       const chatHistory = [];
 
@@ -1850,8 +1868,20 @@ ${JIBUN_DB}`;
         setLoading(true);
         showTyping();
 
+        try {
+          await ensureDbLoaded();
+        } catch (e) {
+          hideTyping();
+          setLoading(false);
+          appendMessage(
+            "bot",
+            "データの読み込みに失敗しました。少し待って再度お試しください。",
+          );
+          return;
+        }
+
         const body = {
-          system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+          system_instruction: { parts: [{ text: buildSystemPrompt() }] },
           contents: chatHistory,
         };
 
@@ -1915,6 +1945,7 @@ ${JIBUN_DB}`;
           panel.style.transform = "";
           panel.classList.add("open");
           tab.classList.add("hidden");
+          ensureDbLoaded().catch(() => {});
         }
       }
 
@@ -2058,8 +2089,21 @@ ${JIBUN_DB}`;
         floatHistory.push({ role: "user", parts: [{ text }] });
         floatSetLoading(true);
         floatShowTyping();
+
+        try {
+          await ensureDbLoaded();
+        } catch (e) {
+          floatHideTyping();
+          floatSetLoading(false);
+          floatAppendMessage(
+            "bot",
+            "データの読み込みに失敗しました。少し待って再度お試しください。",
+          );
+          return;
+        }
+
         const body = {
-          system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+          system_instruction: { parts: [{ text: buildSystemPrompt() }] },
           contents: floatHistory,
         };
         const callAPI = async (retry) => {
@@ -2177,6 +2221,7 @@ ${JIBUN_DB}`;
 
       // キーボード表示時に入力欄を見えるようにスクロール
       chatInput.addEventListener("focus", function () {
+        ensureDbLoaded().catch(() => {});
         if (window.innerWidth <= 768) {
           setTimeout(function () {
             chatInput.scrollIntoView({ behavior: "smooth", block: "nearest" });
