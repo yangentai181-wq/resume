@@ -46,6 +46,9 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <link rel="stylesheet" href="style.css" />
+    <script>
+      document.documentElement.classList.add("js-motion");
+    </script>
   </head>
   <body>
     <!-- ヘッダー -->
@@ -2367,6 +2370,54 @@ ${JIBUN_DB}`;
           setTimeout(resetFloatPanelSize, 100);
         }
       });
+
+      // ===== スクロールモーション（IntersectionObserver）=====
+      (function () {
+        var root = document.documentElement;
+        if (!root.classList.contains("js-motion")) return;
+        var SEL =
+          ".section-title,.hero-title,.hero-subtitle,.credentials-inline," +
+          ".spec-block,.timeline-item,.feature-card,.engine-item,.review-block," +
+          ".ultimate-goal,.skill-progress-item,.requirement-card,.step-item," +
+          ".progress-current,.rating-stars";
+        var els = Array.prototype.slice.call(document.querySelectorAll(SEL));
+        var reduce =
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduce || !("IntersectionObserver" in window)) {
+          els.forEach(function (e) {
+            e.classList.add("is-visible");
+          });
+          return;
+        }
+        // 同一親内のブロック要素を軽くスタッガー（バー/星は除外）
+        var STAGGER =
+          ".spec-block,.timeline-item,.feature-card,.engine-item,.review-block,.requirement-card,.skill-progress-item";
+        els.forEach(function (e) {
+          if (!e.matches(STAGGER) || !e.parentElement) return;
+          var sibs = Array.prototype.slice
+            .call(e.parentElement.children)
+            .filter(function (c) {
+              return c.matches && c.matches(STAGGER);
+            });
+          var i = sibs.indexOf(e);
+          if (i > 0) e.style.transitionDelay = Math.min(i, 6) * 0.06 + "s";
+        });
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting) {
+                en.target.classList.add("is-visible");
+                io.unobserve(en.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+        );
+        els.forEach(function (e) {
+          io.observe(e);
+        });
+      })();
     </script>
   </body>
 </html>
