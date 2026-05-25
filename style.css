@@ -1332,6 +1332,8 @@ body {
   display: flex;
   gap: 16px;
   align-items: flex-start;
+  max-width: 880px;
+  margin: 0 auto;
 }
 
 /* サジェストパネル */
@@ -1432,13 +1434,25 @@ body {
   border-radius: 16px;
   font-size: 13px;
   line-height: 1.7;
-  white-space: pre-wrap;
+}
+
+/* renderMarkdown 出力の余白を整える（吹き出し内の余分な空白を防ぐ） */
+.chat-bubble p {
+  margin: 0;
+}
+.chat-bubble p + p {
+  margin-top: 0.6em;
+}
+.chat-bubble ul {
+  margin: 0.4em 0;
+  padding-left: 1.25em;
 }
 
 .chat-message.user .chat-bubble {
   background-color: var(--color-navy);
   color: var(--color-white);
   border-top-right-radius: 4px;
+  white-space: pre-wrap;
 }
 
 .chat-message.bot .chat-bubble {
